@@ -206,7 +206,7 @@ if __name__ == '__main__':
     hparam_space = {"batch_size": hp.choice('batch_size', [8]),
                     }
     num_evals = 1
-    epochs = 1
+    epochs = 10000
 
     # run the hyperparameter optimization
     trials = Trials()

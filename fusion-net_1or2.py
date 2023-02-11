@@ -201,7 +201,7 @@ if __name__ == '__main__':
                     # "include_species": hp.choice('include_species', [True])
                     }
     num_evals = 1
-    epochs = 1
+    epochs = 10000
 
     # run the hyperparameter optimization
     trials = Trials()
