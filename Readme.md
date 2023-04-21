@@ -27,6 +27,7 @@ Results of training and evaluation of the models will be stored in this subfolde
 3. Run following commands in the folder.
 ```
 virtualenv venv
+venv\scripts\activate
 pip install -r requirements.txt
 ```
 4. (Optional) If the package installation was not successful, try the command below instead.
