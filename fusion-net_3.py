@@ -199,14 +199,14 @@ if __name__ == '__main__':
     existing_model_path = None
     npatience = 50
     include_species = True
-    model_name = f"fus_1dcnn_lstm_resnet_aotf_deadlive_multiout_{str_data_type}"
+    model_name = f"fusion-net3_{str_data_type}"
     fusionnet_data, spec_scaler, shape_scaler, image_scaler = read_data_fusionnet_aotf_deadlive_imagescaler(data_type=data_type)
 
     # hyperparameters to be examined - removed most of them for final training
-    hparam_space = {"batch_size": hp.choice('batch_size', [8]),
+    hparam_space = {"batch_size": hp.choice('batch_size', [24]),
                     }
     num_evals = 1
-    epochs = 10000
+    epochs = 1  # 10000
 
     # run the hyperparameter optimization
     trials = Trials()

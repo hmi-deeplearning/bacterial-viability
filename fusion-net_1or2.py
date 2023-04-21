@@ -193,15 +193,15 @@ if __name__ == '__main__':
 
     existing_model_path = None
     if include_species:
-        model_name = f"fus_1dcnn_lstm_resnet_aotf_deadlive_species_input_{str_data_type}"
+        model_name = f"fusion-net2_{str_data_type}"
     else:
-        model_name = f"fus_1dcnn_lstm_resnet_aotf_deadlive_{str_data_type}"
+        model_name = f"fusion-net1_{str_data_type}"
     fusionnet_data, spec_scaler, shape_scaler = read_data_fusionnet_aotf_deadlive(data_type=data_type)
     hparam_space = {"batch_size": hp.choice('batch_size', [8]),
                     # "include_species": hp.choice('include_species', [True])
                     }
     num_evals = 1
-    epochs = 10000
+    epochs = 1  # 10000
 
     # run the hyperparameter optimization
     trials = Trials()

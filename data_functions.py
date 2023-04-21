@@ -14,14 +14,11 @@ from keras.preprocessing.image import ImageDataGenerator
 
 blurry_image_boundary_width = 0
 
-if os.name == 'nt':  # windows
-    global_data_folder = r"F:/FromTelework/data/processed"
-    global_result_folder = r"F:/FromTelework/data/processed/results"
-    data_csv_postfix = "work"  # or "scinet"
-else:  # linux
-    global_data_folder = r"/project/hmi_deeplearning/data/"
-    global_result_folder = r"/project/hmi_deeplearning/results"
-    data_csv_postfix = "scinet"
+root_folder = os.getcwd()
+
+global_data_folder = fr"{root_folder}/data/"
+global_result_folder = fr"{root_folder}/results"
+data_csv_postfix = "scinet"
 
 
 def msc(x, xref=None):
@@ -437,7 +434,8 @@ def d_resize(image, max_dim=64):  # to resize image
 
 
 def get_table_aotf_deadlive(data_type=0):
-    filename = rf"{global_data_folder}/AOTF_deadlive_Hali/classification/single_cells_{data_csv_postfix}.csv"
+    root_folder = os.getcwd()
+    filename = rf"{root_folder}/data/single_cells_scinet.csv"
     table = pd.read_csv(filename)
     if data_type == 4:
         table = table[table[" Species"] >= data_type]
@@ -784,12 +782,15 @@ def read_image_data_from_table(table, image_size=128):
     nrows = table.shape[0]
     X = []
     print("reading image data...")
+    root_folder = os.getcwd()
+    single_cell_folder = rf"{root_folder}/data/single_cells"
+
     for i in range(nrows):
         if len(table.shape) < 2:
-            img_name = rf"{table.iat[4].strip()}/{table.iat[5].strip()}"
+            img_name = rf"{single_cell_folder}/{table.iat[5].strip()}"
         else:
-            img_name = rf"{table.iat[i, 4].strip()}/{table.iat[i, 5].strip()}"
-        print(img_name)
+            img_name = rf"{single_cell_folder}/{table.iat[i, 5].strip()}"
+        # print(img_name)
         img_data = imread(img_name)
         if img_data is not None:
             img_data = min_max_normalize(img_data)
