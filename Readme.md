@@ -10,13 +10,10 @@ apologize. If you come across any missing records, please do not hesitate to rea
 taesung.shin@usda.gov, and we will promptly correct the oversight. 
 
 ### Data
-**data** subfolder contains average spectra (single_cells_scinet.csv) and 546nm band images (single_cells/*.tif) of 
-single cells that were extracted from hyperspectral images scanned with dark-field hyperspectral microscope of 
-400-1000nm wavelength range.
+The "data" subfolder contains both the average spectra (stored in "single_cells_scinet.csv") and 546nm band images (stored in "single_cells/*.tif") of individual cells. These cells were extracted from hyperspectral images that were captured using a dark-field hyperspectral microscope, with a wavelength range of 400-1000nm.
 
 ### Code
-Python scripts developed based on Python 3.7 were provided to train and evaluate three Fusion-Net models (I, II, and III) introduced 
-for viability detection of foodborne bacterial cells in the paper above.
+Python scripts were developed using Python 3.7 to train and evaluate the three Fusion-Net models (I, II, and III) introduced in the paper for detecting the viability of foodborne bacterial cells.
 
 ### Instruction to run the scripts
 
@@ -51,21 +48,12 @@ python fusion-net_1or2.py 0 1
 python fusion-net_3.py 0
 ```
 
-Please note that these scripts have been written assuming your machine has a GPU with 8GB VRAM and other configurations 
-to properly run tensorflow-backed Keras scripts under Python v3.7. 
-The scripts can run extremely slow, depending on the configuration of your machine. 
+Please note that the provided Python scripts assume that your machine has a GPU with 8GB or more VRAM and other necessary configurations in order to properly run tensorflow-backed Keras scripts under Python v3.7. It is important to note that these scripts may run very slowly, depending on the configuration of your machine.
 
 ### Instruction for results of training and evaluation of a model
-After each model training, the scripts create a **fusion-netx_xxx** subfolder in results folder. The subfolder contains everything necessary 
-to evaluate your model and optimize hyperparameters, 
-including model (**model** subfolder), data scaler (***_scaler.bin**), 
-index of training, validation, and test data in original dataset (**index.mat**).
+After each model training, the Python scripts create a "fusion-netx_xxx" subfolder in the "results" folder. This subfolder contains everything that is necessary to evaluate the trained model and optimize hyperparameters, including the trained model (stored in the "model" subfolder), data scaler (*_scaler.bin), and an index of the training, validation, and test data in the original dataset (stored in "index.mat").
 
-The simplest way to check model evaluation results may be 
-reading summary.txt file. 
-In the text file, 
-find a line of "Evalutation of best performing model" and subsequent lines 
-indicating loss and accuracy values of the model with training, validation, and test data.
+The simplest way to check the evaluation results of the model may be to read the "summary.txt" file. In this text file, locate the line that reads "Evaluation of best performing model" and look for the subsequent lines that indicate the loss and accuracy values of the model, including for the training, validation, and test data.
 
 For example, let's assume you have a summary.txt file containing following lines
 ```
@@ -74,12 +62,8 @@ Evalutation of best performing model:
 [0.0471896171569824, 0.9337423086166382]
 [0.0587867140769958, 0.915625]
 ```
-The content implies that loss and accuracy of model were 
-0.041 and 94% with training data, 0.047 and 93% with validation data,
-0.059 and 91% with test data.
+Based on the content, the loss and accuracy of the model were 0.041 and 94% with the training data, 0.047 and 93% with the validation data, and 0.059 and 92% with the test data.
 
-It must be noted that some portions of the results may not be directly related to model evaluation 
-because the scripts were written for both model training and hyperparameter optimizations, 
+However, it is important to note that some sections of the results may not be directly related to model evaluation since the scripts were written for both model training and hyperparameter optimization.
 
-The scripts and data were validated with several computing environments but 
-if you find any problem, please send an email to taesung.shin@usda.gov. Thanks.
+The provided scripts and data have been validated with several computing environments (e.g., PC with Windows 10 and cloud with Linux), but if you encounter any issues, please send an email to taesung.shin@usda.gov. Thank you.
